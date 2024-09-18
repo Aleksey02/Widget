@@ -1,0 +1,12 @@
+.beforePromo{
+	padding: 15px;
+	background: rgb(24, 24, 31);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__text{
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 16px;
+	}
+}

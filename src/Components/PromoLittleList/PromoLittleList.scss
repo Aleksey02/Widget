@@ -1,0 +1,25 @@
+.promoListLittle{
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	&-help{
+		top: 2px;
+		left: 54%;
+	}	
+	&__item{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 10px;
+		position: relative;
+		& img{
+			display: block;
+		}
+		& span{
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 16px;
+		}		
+	}
+}

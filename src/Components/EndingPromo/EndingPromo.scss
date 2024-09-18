@@ -1,0 +1,15 @@
+.endingPromo{
+	padding: 10px 15px;
+	background-color: rgba(24, 24, 31, 1);
+	display: flex;
+	flex-direction: column;
+	gap: 3px;	
+	&__text{
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 16px;		
+	}
+	&__subtext{
+		color: rgb(151, 151, 151);
+	}
+}
