@@ -1,8 +1,7 @@
 import './Main.scss'
 import question from '../../assets/question.svg'
 import arrow from '../../assets/arrow_down.svg'
-import imgFull from '../../assets/icon_game_full.png'
-import imgPart from '../../assets/icon_game_part.png'
+import img from '../../assets/icon_game_base.png'
 
 import { useEffect, useState } from 'react'
 import BeforePromo from '../BeforePromo/BeforePromo'
@@ -14,7 +13,8 @@ import EndPromo from '../EndPromo/EndPromo'
 import PromoLittleList from '../PromoLittleList/PromoLittleList'
 
 function Main({activeItem, table}) {
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(false);
+	const imageColor = (activeItem.title === 'beforePromo' || activeItem.title === 'endPromo') ? 'rgb(247 65 32) 10%, #8B0000 100%' : 'rgb(205 21 21) 32%';
 	useEffect(() => {
 		setOpen(false)
 	}, [activeItem])
@@ -23,8 +23,9 @@ function Main({activeItem, table}) {
 			<div className="main__menu">
 				<div className="main__box">
 					<div className="main__block">
-						{ (activeItem.title == 'beforePromo' || activeItem.title == 'endPromo') && <img src={imgFull} alt="logo game" /> }
-						{ !(activeItem.title == 'beforePromo' || activeItem.title == 'endPromo') && <img src={imgPart} alt="logo game" /> }
+						<div className="main__img" style={{background: `linear-gradient(to top, ${imageColor}, #27292e 0%)`}}>
+							<img src={img} alt="logo game" /> 
+						</div>
 						<h3 className="main__title">Compenigma August 2020</h3>
 					</div>
 					<div className="main__block">

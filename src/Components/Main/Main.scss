@@ -16,6 +16,12 @@
 		padding: 15px;
 		gap: 60px;
 	}
+	&__img{
+		position: relative;
+		& img{
+			display: block;
+		}
+	}
 	&__block{
 		display: flex;
 		align-items: center;
