@@ -4,6 +4,7 @@
 	width: 1030px;
 	display: flex;
 	flex-direction: column;
+	
 	&__wrapper{
 		border-radius: 4px;
 		background: rgb(20, 20, 25);
@@ -34,6 +35,13 @@
 		gap: 15px;
 		position: relative;
 	}
+	&__img{
+		position: relative;
+		& img{
+			display: block;
+		}
+	}
+	
 	&__subtitle{
 		font-size: 18px;
 		font-weight: 700;
