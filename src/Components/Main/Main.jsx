@@ -14,49 +14,72 @@ import PromoLittleList from '../PromoLittleList/PromoLittleList'
 
 function Main({activeItem, table}) {
 	const [open, setOpen] = useState(false);
-	const imageColor = (activeItem.title === 'beforePromo' || activeItem.title === 'endPromo') ? 'rgb(247 65 32) 10%, #8B0000 100%' : 'rgb(205 21 21) 32%';
+	const title = activeItem.title;
+	const isFullImage = ()=>(title === 'beforePromo' || title === 'endPromo');
+	const fillSettings = isFullImage() ? 'rgb(247 65 32) 10%, #8B0000 100%' : 'rgb(205 21 21) 32%';
+	const backgroundFill = {background: `linear-gradient(to top, ${fillSettings}, #27292e 0%)`}
+	const isBeforePromo = ()=>(title === 'beforePromo');
+	const isBeginPromo = ()=>(title === 'beginPromo');
+	const isEndingPromo = ()=>(title === 'endingPromo');
+	const isEndPromo = ()=>(title === 'endPromo');
+
 	useEffect(() => {
 		setOpen(false)
 	}, [activeItem])
 	return (
 		<main className="main">
-			<div className="main__menu">
-				<div className="main__box">
-					<div className="main__block">
-						<div className="main__img" style={{background: `linear-gradient(to top, ${imageColor}, #27292e 0%)`}}>
+			<div className="menu">
+				<div className="menu__box">
+					<div className="menu__box-header">
+						<div className="menu__box-img" style={backgroundFill}>
 							<img src={img} alt="logo game" /> 
 						</div>
-						<h3 className="main__title">Compenigma August 2020</h3>
+						<h3 className="menu__box-title">Compenigma August 2020</h3>
 					</div>
-					<div className="main__block">
-						<img src={question} alt="icon question" className="main__question" />
-						<p className="main__help">Нужна помощь?</p>
-						<img src={arrow} alt="icon arrow" className={`main__arrow ${open ? 'active' : ''}`} onClick={() => setOpen((prev)=>!prev)} />
+					<div className="menu__box-description">
+						<img src={question} alt="icon question" className="menu__box-question" />
+						<p className="menu__box-help">Нужна помощь?</p>
+						<img src={arrow} alt="icon arrow" className={`menu__box-arrow ${open ? 'menu__box-arrow_active' : ''}`} onClick={() => setOpen((prev)=>!prev)} />
 					</div>
 				</div>
+
 				{/* До начала промо */}
-				{ open && activeItem.title == 'beforePromo' && <BeforePromo /> }
+				{ isBeforePromo() && open && <BeforePromo /> }
+
 				{/* Акция началась */}
-				{ activeItem.title == 'beginPromo' && <BeginPromo /> }
-				{ open && activeItem.title == 'beginPromo' && <PromoList /> }
+				{ isBeginPromo() && (
+					<>
+						<BeginPromo />
+						{ open && <PromoList /> }
+					</>
+				)}
+
 				{/* Акция завершается */}
-				{ activeItem.title == 'endingPromo' && <EndingPromo /> }
-				{
-					open && activeItem.title == 'endingPromo' &&
+				{ isEndingPromo() && (
 					<>
-						<Table table={table}/>
-						<PromoList />
+						<EndingPromo />
+						{ open && (
+						<>
+							<Table table={table} />
+							<PromoList />
+						</>
+						)}
 					</>
-				}
+				)}
+
 				{/* Акция завершена */}
-				{ activeItem.title == 'endPromo' && <EndPromo /> }
-				{
-					open && activeItem.title == 'endPromo' &&
+				{ isEndPromo() && (
 					<>
-						<Table table={table}/>
-						<PromoLittleList />
+						<EndPromo />
+						{ open && (
+						<>
+							<Table table={table} />
+							<PromoLittleList />
+						</>
+						)}
 					</>
-				}
+				)}
+				
 			</div>
 		</main>
 	)
